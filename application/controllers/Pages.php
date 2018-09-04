@@ -14,10 +14,12 @@
         show_404();
       }
       $data['title'] = ucfirst($page); //capitaliza the first letter
-      $data['email'] = "";
-      // unset($_COOKIE["logado"]);
-      set_cookie("logado",0);
-
+      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+      if($array_auxiliar[1]!=""){
+        $data['email'] = $array_auxiliar[1];
+      }else{
+        $data['email'] ="";
+      }
       $this->load->view('templates/header',$data);
       $this->load->view('templates/carrossel',$data);
       $this->load->view('templates/footer',$data);

@@ -7,14 +7,14 @@
         <div class="carousel-item active">
           <img class="d-block w-100" src="<?php echo base_url('./img/mercedes.jpg'); ?>" alt="First slide">
           <div class="carousel-caption d-none d-md-block">
-          <<h3>Gama de Mercedes melhor do mundo</h3>
-        </div>
+            <h3>Gama de Mercedes melhor do mundo</h3>
+          </div>
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="<?php echo base_url('./img/bmw.jpg'); ?>" alt="Second slide">
           <div class="carousel-caption d-none d-md-block">
-          <h3 style="color:black">Gama de BMW melhor do mundo</h3>
-        </div>
+            <h3 style="color:black">Gama de BMW melhor do mundo</h3>
+          </div>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

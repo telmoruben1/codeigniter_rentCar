@@ -29,7 +29,7 @@
         <ul class="navbar-nav mr-auto" style="margin-left: 20%;">
           <img src="<?php echo base_url('img/logoCar.jpg'); ?>" width="50" height="30"  class="d-inline-block align-top" alt="">
           <li class="nav-item">
-            <a class="nav-link text-info" href="/CodeIgniter_automoveis/index.php/pages/view/?.<?php echo $email ?>">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-info" href="/CodeIgniter_automoveis/index.php/pages/view/?.<?php echo $email?>">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link text-info" id="tabela" href="/CodeIgniter_automoveis/index.php/pages/view_tabela/?.<?php echo $email?>">Frota Automóvel <a href="#"></a> <span class="sr-only">(current)</span></a>
@@ -38,7 +38,7 @@
             <a class="nav-link text-info" href="/CodeIgniter_automoveis/index.php/pages/view_sobre/?.<?php echo $email?>">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-info" href="/CodeIgniter_automoveis/index.php/pages/view_avaliacao/?.">Contacto</a>
+            <a class="nav-link text-info" href="/CodeIgniter_automoveis/index.php/pages/view_avaliacao/?.<?php echo $email?>">Contacto</a>
           </li>
           <li class="nav-item" style="border-style: solid;border-color: #17a2b8!important;">
             <a class="nav-link text-info" href="#"><?php echo $email?></a>
@@ -54,12 +54,12 @@
             }else{
               ?>
                 <!-- <button class="btn btn-secondary text-warning" type="button" id="logout"  aria-haspopup="true" aria-expanded="false" > -->
-                <button class="logout2 btn btn-secondary text-info"  type="button" value="LOGOUT" onclick="window.location.href='http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout/?.<?php echo $email ?>'" />LOGOUT
+                <button class="logout2 btn btn-secondary text-info"  type="button" value="LOGOUT" onclick="window.location.href='http://localhost/CodeIgniter_automoveis/index.php/login/logout/?.<?php echo $email ?>'" />LOGOUT
                 </button>
               <?php
             } ?>
             <div class="dropdown-menu">
-              <form class="px-4 py-3" method="post" action="/CodeIgniter-ponchaAdvisor/index.php/login/verifica_login">
+              <form class="px-4 py-3" method="post" action="/CodeIgniter_automoveis/index.php/login/verifica_login">
                 <div class="form-group">
                   <label for="exampleDropdownFormEmail1">Email address</label>
                   <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="user" value="">
@@ -79,7 +79,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item dropdown-toggle" data-toggle="dropdown">If you dont have account clike here!</a>
               <div class="dropdown-menu">
-                <form class="px-4 py-3" method="post" action="/CodeIgniter-ponchaAdvisor/index.php/login/registo">
+                <form class="px-4 py-3" method="post" action="/CodeIgniter_automoveis/index.php/login/registo">
                 <div class="form-group">
                   <label for="exampleDropdownFormEmail1">Name</label>
                   <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="telmo ruben" name="name" >
