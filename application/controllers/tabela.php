@@ -65,14 +65,24 @@ class Tabela extends CI_Controller
   {
     $this->load->helper('form');
     $this->load->library('form_validation');
+    $id= $_POST['id_automovel'];
 
-    $id= $_POST['id_comentario'];
-    $data2 = array(
-      'titulo' => $_POST['titulo'],
-      'classificacao' => $_POST['classificacao']
-    );
+    $data2 = array();
+    if($_POST['modelo_id']!=""){
+      $data2['modelo_id']=$_POST['modelo_id'];
+    }
+    if($_POST['cor_id']!=""){
+      $data2['cor_id']=$_POST['cor_id'];
+    }
+    if($_POST['matricula']!=""){
+      $data2['matricula']=$_POST['matricula'];
+    }
+    if($_POST['disponibilidade']!=""){
+      $data2['disponibilidade']=$_POST['disponibilidade'];
+    }
+    // print_r($data2);
     $executa=$this->tabela_model->update_row_of_table($id,$data2);
-
+    echo "merda";
   }
 
 }

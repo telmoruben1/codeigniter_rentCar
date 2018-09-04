@@ -37,7 +37,7 @@
           // print_r(count($array));
           foreach ($array as $value){
             if($value["matricula"]!=""){
-              echo "<tr><td>".$value["fabricante"]."</td><td>".$value["Modelo"]."</td><td>".$value["Cor"]."</td><td>".$value["matricula"]."</td><td>".$value["disponibilidade"].'</td><td><span class="table-remove"><button type="button"  value='.$value["automoveis_id"].' class="remove_button2 btn btn-danger btn-rounded btn-sm my-0" >Remove</button></span></td><td><span class="table-remove"><button type="button"  value='.$value["automoveis_id"].' class="update_table btn btn-warning btn-rounded btn-sm my-0">Update</button></span></td></tr>';
+              echo "<tr><td class=".$value["fabricante_id"].">".$value["fabricante"]."</td><td class=".$value["modelo_id"].">".$value["Modelo"]."</td><td class=".$value["cor_id"].">".$value["Cor"]."</td><td>".$value["matricula"]."</td><td>".$value["disponibilidade"].'</td><td><button type="button"  value='.$value["automoveis_id"].' class="remove_button2 btn btn-danger btn-rounded btn-sm my-0" >Remove</button></td><td><button type="button"  value='.$value["automoveis_id"].' class="update_table btn btn-warning btn-rounded btn-sm my-0">Update</button></td></tr>';
             }
           }
         }
@@ -90,6 +90,18 @@
               <option value="9">Toyota</option>
             </select>
           </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Cor</label>
+            <select class="custom-select mb-2 mr-sm-2 " id="cor" name="cor">
+              <option value="1">Vermelho</option>
+              <option value="2">Verde</option>
+              <option value="3">Preto</option>
+              <option value="4">Branco</option>
+              <option value="5">Cinzento</option>
+              <option value="6">Azul</option>
+              <option value="7">Amarelo</option>
+            </select>
+          </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Matricula</label>
               <input type="text" class="form-control" id="matricula" placeholder="XXYYZZ">
@@ -98,8 +110,8 @@
 
             <div class="form_ava" style="padding-left:1em;">
               <form class="myform" >
-                <label style="padding-right:6%;"><input type="radio" class="form-check-input" id="materialInline1" name="disponibilidade" value="0" checked  >Disponivel </label>
-                <label > <input type="radio" class="form-check-input" id="materialInline2" name="disponibilidade" value="1"> Indisponivel</label>
+                <label style="padding-right:6%;"><input type="radio" class="form-check-input" id="materialInline1" name="disponibilidade" value="1" checked  >Disponivel </label>
+                <label > <input type="radio" class="form-check-input" id="materialInline2" name="disponibilidade" value="0"> Indisponivel</label>
               </form>
             </div>
           </div>
