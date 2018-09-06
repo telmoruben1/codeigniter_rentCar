@@ -46,10 +46,13 @@ class Tabela_model extends CI_Model
   public function delete_row_of_table($value)
   {
     $this->load->helper('url');
-    $data = array(
-      'id' => $value
+
+    $data2 = array(
+      'disponibilidade' => 0
     );
-    if($this->db->delete('automoveis', $data)){
+    $this->db->where('id', $value);
+
+    if($this->db->update('automoveis', $data2)){
       return true;
     }else{
       return false;

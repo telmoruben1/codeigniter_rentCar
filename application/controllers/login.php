@@ -64,13 +64,11 @@ class Login extends CI_Controller
       {
         $executa=$this->login_model->set_verifica_login();
         if($executa[0]==true){
-          // print_r($_COOKIE["user"]);
           $data['email']=$executa[1];
           $this->load->view('templates/header',$data);
           $this->load->view('templates/carrossel');
           $this->load->view('templates/footer');
         }else{
-          // print_r($_COOKIE["user"]);
           $data['email']="";
           $this->load->view('templates/header',$data);
           $this->load->view('templates/carrossel');
@@ -84,10 +82,10 @@ class Login extends CI_Controller
   }
   public function verifica_user_logado()
   {
-    $this->load->helper('form');
+      $this->load->helper('form');
       $user_name=$_POST['user'];
       $executa=$this->login_model->get_verifica_logodo($user_name);
-      if($executa==true){
+      if($executa){
         echo true;
       }else{
         echo false;
@@ -96,7 +94,7 @@ class Login extends CI_Controller
 
 
   }
-  
+
   public function registo()
   {
     $this->load->helper('form');
