@@ -9,10 +9,6 @@
     {
       $this->load->helper('url');
       $this->load->helper('cookie');
-      if (!file_exists(APPPATH.'views/pages/'.$page.'.php')) {
-        // whoops, we dont have a page for that!
-        show_404();
-      }
       $data['title'] = ucfirst($page); //capitaliza the first letter
       $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
       if($array_auxiliar[1]!=""){

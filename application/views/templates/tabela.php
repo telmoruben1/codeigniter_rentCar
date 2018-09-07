@@ -44,7 +44,19 @@
         ?>
       </tbody>
     </table>
+    <!-- <div class="paginas">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+          <li class="page-item active"><a class="page-link" href="">1 </a></li>
+          <li class="page-item "><a class="page-link" href="#">2 </a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+        </ul>
+      </nav>
+    </div> -->
   </div>
+
   <div id="janelaUpdate" style="width: 20%;height: auto;margin-left: 20%;position: absolute;display: none;">
 
     <div class="modal-dialog" role="document">
@@ -102,9 +114,9 @@
               <option value="7">Amarelo</option>
             </select>
           </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput">Matricula</label>
-              <input type="text" class="form-control" id="matricula" placeholder="XXYYZZ">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Matricula</label>
+            <input type="text" class="form-control" id="matricula" placeholder="XXYYZZ">
           </div>
           <div class="form-group">
 

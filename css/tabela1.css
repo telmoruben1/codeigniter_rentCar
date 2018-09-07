@@ -31,3 +31,8 @@
   margin-left: 10%;
   position: absolute;
 }
+.paginas{
+  position: relative;
+  float: left;
+  margin-left: 15%;
+}

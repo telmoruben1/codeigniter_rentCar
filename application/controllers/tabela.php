@@ -45,7 +45,7 @@ class Tabela extends CI_Controller
         $data['email']="";
       }
       $this->load->view('templates/header',$data);
-      $this->load->view('templates/erro_user',$data);
+      $this->load->view('templates/tabela',$data);
 
     }
 
