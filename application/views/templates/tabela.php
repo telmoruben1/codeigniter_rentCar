@@ -1,7 +1,7 @@
 
 <div class="container2">
   <div class="tabela">
-    <form method="post" action="/CodeIgniter_automoveis/index.php/tabela/verifica_pesquisa/?.<?php echo $email."/submit" ?>">
+    <form method="post" action="/CodeIgniter_automoveis/index.php/tabela/verifica_pesquisa/?.<?php echo $email."/1" ?>">
       <div class="form-row align-items-center">
         <div class="col-auto">
           <select class="custom-select mb-2 mr-sm-2 " id="inlineFormCustomSelect" name="tipo">
