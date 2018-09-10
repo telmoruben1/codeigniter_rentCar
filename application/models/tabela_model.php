@@ -49,6 +49,9 @@ class Tabela_model extends CI_Model
       $page_num = (int)$type*20;
       if($search==""){
         $query = $this->db->query("SELECT DISTINCT modelos.id AS modelo_id, fabricantes.id AS fabricante_id, cores.id AS cor_id, fabricantes.nome AS 'fabricante',  modelos.nome AS 'Modelo', cores.nome AS Cor, matricula ,disponibilidade, automoveis.id AS automoveis_id FROM modelos,automoveis,fabricantes,cores WHERE automoveis.modelo_id=modelos.id AND modelos.fabricante_id=fabricantes.id AND automoveis.cor_id=cores.id GROUP BY automoveis.id LIMIT 20 OFFSET $page_num");
+        $query2 = $this->db->query("SELECT DISTINCT modelos.id AS modelo_id, fabricantes.id AS fabricante_id, cores.id AS cor_id, fabricantes.nome AS 'fabricante',  modelos.nome AS 'Modelo', cores.nome AS Cor, matricula ,disponibilidade, automoveis.id AS automoveis_id FROM modelos,automoveis,fabricantes,cores WHERE automoveis.modelo_id=modelos.id AND modelos.fabricante_id=fabricantes.id AND automoveis.cor_id=cores.id GROUP BY automoveis.id");
+        $count=$query2->num_rows();
+        $num_pages=$count/20;
         //SELECT modelos.nome, fabricantes.nome,cores.nome,matricula ,disponibilidade FROM modelos,automoveis,fabricantes,cores WHERE automoveis.modelo_id=modelos.id AND modelos.fabricante_id=fabricantes.id AND automoveis.cor_id=cores.id GROUP BY automoveis.id
       }else{
         if($tipo=="fabricante"){
