@@ -1,6 +1,7 @@
+
 <div class="container2">
   <div class="tabela">
-    <form method="post" action="/CodeIgniter_automoveis/index.php/tabela/verifica_pesquisa/?.<?php echo $email ?>">
+    <form method="post" action="/CodeIgniter_automoveis/index.php/tabela/verifica_pesquisa/?.<?php echo $email."/submit" ?>">
       <div class="form-row align-items-center">
         <div class="col-auto">
           <select class="custom-select mb-2 mr-sm-2 " id="inlineFormCustomSelect" name="tipo">
@@ -44,17 +45,22 @@
         ?>
       </tbody>
     </table>
-    <!-- <div class="paginas">
+    <div class="paginas">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
+          <?php
+          $i=1;
+          while ($i <= $num_pages) {
+              ?>
+              <li class="page-item "><a class="page1 page-link" href="/CodeIgniter_automoveis/index.php/tabela/verifica_pesquisa/?.<?php echo $email."/".$i ?>"><?php echo $i ?> </a></li>
+              <?php
+              $i++;
+            }
 
-          <li class="page-item active"><a class="page-link" href="">1 </a></li>
-          <li class="page-item "><a class="page-link" href="#">2 </a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-
+          ?>
         </ul>
       </nav>
-    </div> -->
+    </div>
   </div>
 
   <div id="janelaUpdate" style="width: 20%;height: auto;margin-left: 20%;position: absolute;display: none;">

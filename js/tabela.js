@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var id_rio=0;
-
   $(".remove_button2").click(function(){
     console.log("remove");
      id_rio=$(this).val();

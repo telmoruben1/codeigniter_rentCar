@@ -24,23 +24,25 @@ class Tabela extends CI_Controller
     $this->load->library('form_validation');
 
     // $data['title'] = 'Create a news item';
+    $array_auxiliar1=explode('?.',$_SERVER['REQUEST_URI']);
+    $string_main=$array_auxiliar1[1];
+    $array_submit=explode('/',$string_main);
+    $string_pretendida=$array_submit[1];
 
-    $executa=$this->tabela_model->set_verifica_tabela();
+    $executa=$this->tabela_model->set_verifica_tabela($string_pretendida);
     if($executa!=false){
-      $data['array']=$executa;
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      if(!empty($array_auxiliar[1])){
-        $data['email'] = $array_auxiliar[1];
+      $data['num_pages']=$executa[1];
+      $data['array']=$executa[0];
+      if(!empty($array_submit[0])){
+        $data['email'] = $array_submit[0];
       }else{
         $data['email']="";
       }
       $this->load->view('templates/header',$data);
       $this->load->view('templates/tabela',$data);
     }else{
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      // print_r($array_auxiliar);
-      if(!empty($array_auxiliar[1])){
-        $data['email'] = $array_auxiliar[1];
+      if(!empty($array_submit[0])){
+        $data['email'] = $array_submit[0];
       }else{
         $data['email']="";
       }
