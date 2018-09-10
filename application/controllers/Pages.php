@@ -4,12 +4,12 @@
    */
   class Pages extends CI_Controller
   {
-    public function view($page='home')
+    public function view()
 
     {
+
       $this->load->helper('url');
       $this->load->helper('cookie');
-      $data['title'] = ucfirst($page); //capitaliza the first letter
       $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
       if($array_auxiliar[1]!=""){
         $data['email'] = $array_auxiliar[1];
