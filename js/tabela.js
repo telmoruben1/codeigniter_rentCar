@@ -13,7 +13,8 @@ $(document).ready(function(){
     });
     console.log(disp);
    var array_url=window.location.href.split('?.');
-   var email=array_url[1];
+   var array_construcao=array_url[1];
+   var email=array_construcao.split('/')[0];
    console.log(email);
    if(email !=""){
      $.ajax({
@@ -130,7 +131,8 @@ $(document).ready(function(){
     console.log(cor+"cor");
     console.log(id_auto+"id");
     var array_url=window.location.href.split('?.');
-    var email=array_url[1];
+    var array_construcao=array_url[1];
+    var email=array_construcao.split('/')[0];
     console.log(email);
     if(email !=""){
       $.ajax({
@@ -180,57 +182,6 @@ $(document).ready(function(){
     }
 
 
-    // if(array_user[1] !=""){
-    //   console.log("apagou");
-    //   $.ajax({
-    //     type: "post",
-    //     url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/verifica_user_logado",
-    //     cache: false,
-    //     data: {"user":array_user[1]},
-    //     success: function(response){
-    //       try{
-    //         //console.log(response)  --> "Result";
-    //         // console.log("deu");
-    //         if(response==true){
-    //           console.log("deu logado");
-    //           $.ajax({
-    //             type: "post",
-    //             url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/update_table",
-    //             cache: false,
-    //             data: {"id_comentario":id_rio,"titulo":tit,"classificacao":classificacao},
-    //             success: function(response){
-    //               try{
-    //
-    //                 location.reload();
-    //
-    //               }catch(e) {
-    //                 console.log(e);
-    //                 alert('Erro no cath');
-    //               }
-    //             },
-    //             error: function(){
-    //               alert('Error no update');
-    //             }
-    //           });
-    //         }else{
-    //           console.log("deu nao logado");
-    //         }
-    //
-    //         // location.reload();
-    //
-    //       }catch(e) {
-    //         console.log(e);
-    //         alert('Exception while request..');
-    //       }
-    //     },
-    //     error: function(){
-    //       alert('Error while request..');
-    //     }
-    //   });
-    //
-    // }else{
-    //   alert("Não tem permissao de remover");
-    // }
 
   });
 
