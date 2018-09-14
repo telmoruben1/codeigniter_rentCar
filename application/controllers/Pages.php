@@ -10,11 +10,10 @@
 
       $this->load->helper('url');
       $this->load->helper('cookie');
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      if($array_auxiliar[1]!=""){
-        $data['email'] = $array_auxiliar[1];
+      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
+          $data['email'] = $_COOKIE['username'];
       }else{
-        $data['email'] ="";
+          $data['email'] = "";
       }
       $this->load->view('templates/header',$data);
       $this->load->view('templates/carrossel',$data);
@@ -26,9 +25,12 @@
       $this->load->helper('url');
       $this->load->helper('cookie');
 
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      // print_r($array_auxiliar);
-      $data['email'] = $array_auxiliar[1];
+      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
+          $data['email'] = $_COOKIE['username'];
+      }else{
+          $data['email'] = "";
+      }
+
       $data['num_pages']="";
       // unset($_COOKIE["logado"]);
       $this->load->view('templates/header',$data);
@@ -40,14 +42,13 @@
     {
       $this->load->helper('url');
       $this->load->helper('cookie');
-      // if (!file_exists(APPPATH.'views/pages/'.$page.'.php')) {
-      //   // whoops, we dont have a page for that!
-      //   show_404();
-      // }
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      // print_r($array_auxiliar);
-      $data['email'] = $array_auxiliar[1];
-      // unset($_COOKIE["logado"]);
+
+      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
+          $data['email'] = $_COOKIE['username'];
+      }else{
+          $data['email'] = "";
+      }
+
       $this->load->view('templates/header', $data);
       $this->load->view('templates/avaliacao');
       $this->load->view('templates/footer');
@@ -56,14 +57,13 @@
 
     {
       $this->load->helper('url');
-      // if (!file_exists(APPPATH.'views/pages/'.$page.'.php')) {
-      //   // whoops, we dont have a page for that!
-      //   show_404();
-      // }
-      $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
-      // print_r($array_auxiliar);
-      $data['email'] = $array_auxiliar[1];
-      // unset($_COOKIE["logado"]);
+      $this->load->helper('cookie');
+
+      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
+          $data['email'] = $_COOKIE['username'];
+      }else{
+          $data['email'] = "";
+      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sobre');
       $this->load->view('templates/footer');
