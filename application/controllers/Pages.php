@@ -4,14 +4,24 @@
    */
   class Pages extends CI_Controller
   {
+    public function __construct()
+    {
+      parent::__construct();
+      // $this->load->helper('cookie');
+  		$this->load->helper(array('url'));
+      $this->load->library(array('session'));
+
+      // Load encryption library
+      // $this->load->library('encrypt');
+    }
     public function view()
 
     {
 
       $this->load->helper('url');
       $this->load->helper('cookie');
-      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
-          $data['email'] = $_COOKIE['username'];
+      if ( isset($_SESSION["username"]) && $_SESSION['logado']) {
+          $data['email'] = $_SESSION['username'];
       }else{
           $data['email'] = "";
       }
@@ -25,8 +35,8 @@
       $this->load->helper('url');
       $this->load->helper('cookie');
 
-      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
-          $data['email'] = $_COOKIE['username'];
+      if ( isset($_SESSION["username"]) && $_SESSION['logado']) {
+          $data['email'] = $_SESSION['username'];
       }else{
           $data['email'] = "";
       }
@@ -43,8 +53,8 @@
       $this->load->helper('url');
       $this->load->helper('cookie');
 
-      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
-          $data['email'] = $_COOKIE['username'];
+      if ( isset($_SESSION["username"]) && $_SESSION['logado']) {
+          $data['email'] = $_SESSION['username'];
       }else{
           $data['email'] = "";
       }
@@ -59,8 +69,8 @@
       $this->load->helper('url');
       $this->load->helper('cookie');
 
-      if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) {
-          $data['email'] = $_COOKIE['username'];
+      if ( isset($_SESSION["username"]) && $_SESSION['logado']) {
+          $data['email'] = $_SESSION['username'];
       }else{
           $data['email'] = "";
       }

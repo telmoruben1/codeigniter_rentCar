@@ -47,13 +47,14 @@
           </ul>
           <span class="navbar-text"style="margin-right: 25%;">
             <div class="dropdown">
-              <?php if ( isset($_COOKIE["username"]) && $_COOKIE['logado']) : ?>
+              <?php if ( isset($_SESSION["logado"]) && $_SESSION['logado']===true) : ?>
                 <button class="logout2 btn btn-secondary text-info"  type="button" value="LOGOUT" onclick="window.location.href='http://localhost/CodeIgniter_automoveis/index.php/login/logout/'" />LOGOUT
                 </button>
             <?php else : ?>
               <button class="btn btn-secondary dropdown-toggle text-info" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 LOGIN
               </button>
+              
             <?php endif; ?>
 
               <div class="dropdown-menu">

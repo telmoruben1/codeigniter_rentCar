@@ -8,9 +8,10 @@ class Login extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->helper('cookie');
+    // $this->load->helper('cookie');
 		$this->load->helper(array('url'));
     $this->load->model('login_model');
+    $this->load->library(array('session'));
 
     // Load encryption library
     // $this->load->library('encrypt');
@@ -53,12 +54,16 @@ class Login extends CI_Controller
   			if ($this->login_model->resolve_user_login($username, $password)) {
 
   				$user = $this->login_model->get_user($username);
-          $cookie_id= array('name'=> 'user_id','value'  => (string)$user->id,'expire' => '3600');
-          $cookie_username= array('name'=> 'username','value'  => (string)$user->username,'expire' => '3600');
-          $cookie_logado= array('name'=> 'logado','value'  => (bool)true,'expire' => '3600');
-          $this->input->set_cookie($cookie_id);
-          $this->input->set_cookie($cookie_logado);
-          $this->input->set_cookie($cookie_username);
+          // $cookie_id= array('name'=> 'user_id','value'  => (string)$user->id,'expire' => '3600');
+          // $cookie_username= array('name'=> 'username','value'  => (string)$user->username,'expire' => '3600');
+          // $cookie_logado= array('name'=> 'logado','value'  => (bool)true,'expire' => '3600');
+          // $this->input->set_cookie($cookie_id);
+          // $this->input->set_cookie($cookie_logado);
+          // $this->input->set_cookie($cookie_username);
+
+          $_SESSION['user_id']      = (int)$user->id;
+          $_SESSION['username']     = (string)$user->username;
+          $_SESSION['logado']    = (bool)true;
           // set_cookie('user_id',(string)$user->id,'3600');
           // set_cookie('username',(string)$user->username,'3600');
           // set_cookie('logado',(bool)true,'3600');
@@ -103,7 +108,8 @@ class Login extends CI_Controller
     if ($this->form_validation->run() === false) {
 
       // validation not ok, send validation errors to the view
-      $this->load->view('templates/header');
+      $data["email"]="";
+      $this->load->view('templates/header',$data);
       $this->load->view('templates/erro_user');
       $this->load->view('templates/footer');
 
@@ -118,15 +124,15 @@ class Login extends CI_Controller
         if ($this->login_model->create_user($username, $email, $password)) {
 
           $user = $this->login_model->get_user($username);
-          $cookie_id= array('name'=> 'user_id','value'  => (string)$user->id,'expire' => '3600');
-          $cookie_username= array('name'=> 'username','value'  => (string)$user->username,'expire' => '3600');
-          $cookie_logado= array('name'=> 'logado','value'  => (bool)true,'expire' => '3600');
-          $this->input->set_cookie($cookie_id);
-          $this->input->set_cookie($cookie_logado);
-          $this->input->set_cookie($cookie_username);
-          // set_cookie('user_id',(string)$user->id,'3600');
-          // set_cookie('username',(string)$user->username,'3600');
-          // set_cookie('logado',(bool)true,'3600');
+          // $cookie_id= array('name'=> 'user_id','value'  => (string)$user->id,'expire' => '3600');
+          // $cookie_username= array('name'=> 'username','value'  => (string)$user->username,'expire' => '3600');
+          // $cookie_logado= array('name'=> 'logado','value'  => (bool)true,'expire' => '3600');
+          // $this->input->set_cookie($cookie_id);
+          // $this->input->set_cookie($cookie_logado);
+          // $this->input->set_cookie($cookie_username);
+          $_SESSION['user_id']      = (int)$user->id;
+          $_SESSION['username']     = (string)$user->username;
+          $_SESSION['logado']    = (bool)true;
 
           $data['email']=(string)$user->username;
           $this->load->view('templates/header',$data);
@@ -150,41 +156,69 @@ class Login extends CI_Controller
 
 		// create the data object
 		$data = [];
-    if(isset($_COOKIE['logado'])){
+    if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
+
+			// remove session datas
+			foreach ($_SESSION as $key => $value) {
+				unset($_SESSION[$key]);
+			}
+
+        $data['email']="";
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/carrossel');
+        $this->load->view('templates/footer');
+
+		} else {
+
       $data['email']="";
-      delete_cookie('logado');
-      delete_cookie('username');
-      delete_cookie('user_id');
       $this->load->view('templates/header',$data);
       $this->load->view('templates/carrossel');
       $this->load->view('templates/footer');
-    }else{
-      if ($this->input->cookie('logado',true)==true) {
-        delete_cookie('logado');
-        delete_cookie('username');
-        delete_cookie('user_id');
 
-  			// user logout ok
-        $data['email']=$_COOKIE['username'];
-        $this->load->view('templates/header',$data);
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
-
-  		} else {
-        $data['email']="";
-        delete_cookie('logado');
-        delete_cookie('username');
-        delete_cookie('user_id');
-        $this->load->view('templates/header',$data);
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
-
-  		}
-    }
+		}
+    // if(isset($_COOKIE['logado'])){
+    //   $data['email']="";
+    //   delete_cookie('logado');
+    //   delete_cookie('username');
+    //   delete_cookie('user_id');
+    //   $this->load->view('templates/header',$data);
+    //   $this->load->view('templates/carrossel');
+    //   $this->load->view('templates/footer');
+    // }else{
+    //   if ($this->input->cookie('logado',true)==true) {
+    //     delete_cookie('logado');
+    //     delete_cookie('username');
+    //     delete_cookie('user_id');
+    //
+  	// 		// user logout ok
+    //     $data['email']=$_COOKIE['username'];
+    //     $this->load->view('templates/header',$data);
+    //     $this->load->view('templates/carrossel');
+    //     $this->load->view('templates/footer');
+    //
+  	// 	} else {
+    //     $data['email']="";
+    //     delete_cookie('logado');
+    //     delete_cookie('username');
+    //     delete_cookie('user_id');
+    //     $this->load->view('templates/header',$data);
+    //     $this->load->view('templates/carrossel');
+    //     $this->load->view('templates/footer');
+    //
+  	// 	}
+    // }
 
 
 
 	}
+  public function get_verifica_logodo(){
+    print_r($_SESSION['logado']);
+    if ( isset($_SESSION["username"]) && $_SESSION['logado']) {
+      return true;
+    }else{
+        return false;
+    }
+  }
   // public function verifica_login()
   // {
   //

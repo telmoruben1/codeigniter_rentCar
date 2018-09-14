@@ -12,33 +12,47 @@ $(document).ready(function(){
         disp=$(this).text();
       }
     });
-  if ( $.cookie('logado')){
-    if(disp!=0){
 
-      $.ajax({
-        type: "post",
-        url: "http://localhost/CodeIgniter_automoveis/index.php/tabela/deleterow",
-        cache: false,
-        data: {"id_automovel":id_rio},
-        success: function(response){
-          try{
-            alert("O veiculo foi removido");
-            location.reload();
-          }catch(e) {
-            console.log(e);
-            alert('Exception while request..');
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/CodeIgniter_automoveis/index.php/login/get_verifica_logodo",
+      cache: false,
+      success: function(response){
+        if(response){
+          if(disp!=0){
+
+            $.ajax({
+              type: "post",
+              url: "http://localhost/CodeIgniter_automoveis/index.php/tabela/deleterow",
+              cache: false,
+              data: {"id_automovel":id_rio},
+              success: function(response){
+                try{
+                  alert("O veiculo foi removido");
+                  location.reload();
+                }catch(e) {
+                  console.log(e);
+                  alert('Exception while request..');
+                }
+              },
+              error: function(){
+                alert('Error while request..');
+              }
+            });
+          }else{
+            alert('Não pode remover este automovel esta como indisponivel!');
           }
-        },
-        error: function(){
-          alert('Error while request..');
+        }else{
+            alert("Não tem permissao de remover");
         }
-      });
-    }else{
-      alert('Não pode remover este automovel esta como indisponivel!');
-    }
-  }else{
-    alert("Não tem permissao de remover");
-  }
+
+      },
+      error: function(){
+        alert('Error while request..');
+      }
+    });
+
 
 
 
@@ -105,33 +119,44 @@ $(document).ready(function(){
     console.log(disponibilidade);
     console.log(cor+"cor");
     console.log(id_auto+"id");
+    $.ajax({
+      type: "post",
+      url: "http://localhost/CodeIgniter_automoveis/index.php/login/get_verifica_logodo",
+      cache: false,
+      success: function(response){
+        if(response){
 
-    if (Cookies.get('logado')){
 
+            $.ajax({
+              type: "post",
+              url: "http://localhost/CodeIgniter_automoveis/index.php/tabela/update_table",
+              cache: false,
+              data: {"id_automovel":id_auto,"modelo_id":modelo,"cor_id":cor,"matricula":matricula,"disponibilidade":disponibilidade},
+              success: function(response){
+                try{
+                  alert("Foi feita a atualizacao com sucesso! Obrigado.");
+                  location.reload();
 
-        $.ajax({
-          type: "post",
-          url: "http://localhost/CodeIgniter_automoveis/index.php/tabela/update_table",
-          cache: false,
-          data: {"id_automovel":id_auto,"modelo_id":modelo,"cor_id":cor,"matricula":matricula,"disponibilidade":disponibilidade},
-          success: function(response){
-            try{
-              alert("Foi feita a atualizacao com sucesso! Obrigado.");
-              location.reload();
+                }catch(e) {
+                  console.log(e);
+                  alert('Erro no cath');
+                }
+              },
+              error: function(){
+                alert('Error no update');
+              }
+            });
+          
+        }else{
+            alert("Não tem permissao de remover");
+        }
 
-            }catch(e) {
-              console.log(e);
-              alert('Erro no cath');
-            }
-          },
-          error: function(){
-            alert('Error no update');
-          }
-        });
+      },
+      error: function(){
+        alert('Error while request..');
+      }
+    });
 
-    }else{
-      alert("Não tem permissao de remover");
-    }
 
 
 
